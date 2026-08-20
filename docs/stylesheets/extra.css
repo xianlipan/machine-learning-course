@@ -1,0 +1,10 @@
+/* 顶部导航已经包含全部栏目，因此隐藏重复的左侧主导航。 */
+.md-sidebar--primary {
+  display: none;
+}
+
+@media screen and (min-width: 60em) {
+  .md-content {
+    max-width: none;
+  }
+}
