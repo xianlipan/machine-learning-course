@@ -5,7 +5,16 @@ hide:
 
 ## 书籍
 
-相关教材与参考书将陆续更新。
+<div class="book-gallery">
+  <figure>
+    <img src="../images/books/chinese-textbooks.png" alt="中文图书">
+    <figcaption>中文图书</figcaption>
+  </figure>
+  <figure>
+    <img src="../images/books/english-textbooks.png" alt="英文图书">
+    <figcaption>英文图书</figcaption>
+  </figure>
+</div>
 
 ## 网站
 
