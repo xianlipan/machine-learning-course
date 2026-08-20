@@ -1,0 +1,56 @@
+site_name: 机器学习课程
+site_description: 机器学习课程课件、作业、实验代码与相关资料
+site_author: 潘老师
+site_url: https://xianlipan.github.io/machine-learning-course/
+
+repo_name: xianlipan/machine-learning-course
+repo_url: https://github.com/xianlipan/machine-learning-course
+
+theme:
+  name: material
+  language: zh
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+  palette:
+    - scheme: default
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/brightness-7
+        name: 切换到深色模式
+    - scheme: slate
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/brightness-4
+        name: 切换到浅色模式
+
+nav:
+  - 课程首页: index.md
+  - 教学大纲: syllabus.md
+  - 教学进度: schedule.md
+  - 课程课件:
+      - 第1章 机器学习概述: lectures/chapter01.md
+  - 实验内容: labs/index.md
+  - 课程作业: assignments/index.md
+  - 相关资源: resources.md
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.arithmatex:
+      generic: true
