@@ -6,21 +6,14 @@ hide:
 
 # 补充资料
 
-## 软件环境
+## 书籍
 
-- Python
-- Anaconda
-- Visual Studio Code
-- Jupyter Notebook
+相关教材与参考书将陆续更新。
 
-## 常用工具
+## 网站
 
-- NumPy
-- Pandas
-- Matplotlib
-- Scikit-learn
-- PyTorch
+相关课程网站、工具文档和学习资源将陆续更新。
 
-## 课外阅读
+## 论文
 
-相关教材、文档和数据集链接将陆续更新。
+课程相关论文与延伸阅读材料将陆续更新。
