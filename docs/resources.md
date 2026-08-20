@@ -18,7 +18,9 @@ hide:
 
 ## 网站
 
-相关课程网站、工具文档和学习资源将陆续更新。
+- [scikit-learn 用户指南](https://scikit-learn.org/stable/user_guide.html)：经典 Python 机器学习工具库，涵盖监督学习、无监督学习、模型选择、数据预处理和常用示例。
+- [Stanford CS229：Machine Learning](https://see.stanford.edu/Course/CS229)：斯坦福大学经典机器学习课程，提供课程视频、讲义、复习资料和作业。
+- [Dive into Deep Learning](https://d2l.ai/)：可在线阅读并运行代码的深度学习教材，包含数学基础、神经网络和 PyTorch 实现。
 
 ## 论文
 
