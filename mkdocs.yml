@@ -32,13 +32,12 @@ theme:
 
 nav:
   - 课程首页: index.md
-  - 教学大纲: syllabus.md
-  - 教学进度: schedule.md
+  - 课程大纲: syllabus.md
   - 课程课件:
-      - 第1章 机器学习概述: lectures/chapter01.md
-  - 实验内容: labs/index.md
-  - 课程作业: assignments/index.md
-  - 相关资源: resources.md
+      - 课件目录: lectures/index.md
+      - 第 1 次课：机器学习概述: lectures/chapter01.md
+  - 练习与作业: coursework.md
+  - 补充资料: resources.md
 
 plugins:
   - search
