@@ -23,3 +23,22 @@
   width: 100%;
   min-width: 46rem;
 }
+
+/* 首页欢迎内容。 */
+.home-title {
+  text-align: center;
+}
+
+.home-paragraph {
+  text-indent: 2em;
+}
+
+.home-signature,
+.home-date {
+  margin: 0;
+  text-align: right;
+}
+
+.home-signature {
+  margin-top: 3em;
+}
