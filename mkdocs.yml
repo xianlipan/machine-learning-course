@@ -33,10 +33,7 @@ theme:
 nav:
   - 课程首页: index.md
   - 课程大纲: syllabus.md
-  - 课程课件:
-      - 课件目录: lectures/index.md
-      - 第 1 次课：机器学习概述: lectures/chapter01.md
-  - 练习与作业: coursework.md
+  - 课程内容与下载: coursework.md
   - 补充资料: resources.md
 
 plugins:
