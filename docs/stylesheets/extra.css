@@ -21,12 +21,23 @@
 .md-typeset__table table:not([class]) {
   display: table;
   width: 100%;
-  min-width: 58rem;
+  min-width: 50rem;
 }
 
-.assignment-reminder {
-  color: var(--md-code-hl-string-color);
-  font-weight: 700;
+.md-typeset__table th {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.assignment-heading {
+  display: inline-block;
+  text-align: center;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.assignment-heading small {
+  font-weight: 400;
 }
 
 /* 首页欢迎内容。 */
