@@ -1,3 +1,98 @@
+/* ---------- 全站视觉主题 ---------- */
+:root {
+  --course-navy: #12345b;
+  --course-blue: #1967b3;
+  --course-cyan: #18a6b8;
+  --course-orange: #f59e42;
+  --course-surface: #ffffff;
+  --course-border: rgb(18 52 91 / 11%);
+  --course-shadow: 0 0.8rem 2.5rem rgb(20 55 90 / 9%);
+}
+
+[data-md-color-scheme="default"] {
+  --md-default-bg-color: #f5f8fc;
+  --md-primary-fg-color: var(--course-blue);
+  --md-accent-fg-color: #087f91;
+}
+
+[data-md-color-scheme="slate"] {
+  --course-surface: #172235;
+  --course-border: rgb(154 190 225 / 13%);
+  --course-shadow: 0 0.8rem 2.5rem rgb(0 0 0 / 22%);
+  --md-primary-fg-color: #2678bb;
+  --md-accent-fg-color: #4fc3cf;
+}
+
+body {
+  background-image:
+    radial-gradient(circle at 8% 10%, rgb(39 120 187 / 7%), transparent 24rem),
+    radial-gradient(circle at 92% 25%, rgb(24 166 184 / 6%), transparent 22rem);
+  background-attachment: fixed;
+}
+
+/* 顶部使用课程大纲中的蓝、青配色，避免大面积纯色。 */
+.md-header {
+  background: linear-gradient(115deg, var(--course-navy) 0%, var(--course-blue) 58%, var(--course-cyan) 100%);
+  box-shadow: 0 0.2rem 1.2rem rgb(11 43 76 / 24%);
+}
+
+.md-header__title {
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.md-search__form {
+  border: 1px solid rgb(255 255 255 / 18%);
+  border-radius: 0.55rem;
+  background-color: rgb(255 255 255 / 13%);
+}
+
+.md-tabs {
+  background: linear-gradient(115deg, #102f52 0%, #185c94 62%, #168b9b 100%);
+}
+
+.md-tabs__link {
+  margin-top: 0.55rem;
+  padding: 0.42rem 0.72rem;
+  border-radius: 999px;
+  font-weight: 600;
+  opacity: 0.82;
+  transition: background-color 160ms ease, opacity 160ms ease, transform 160ms ease;
+}
+
+.md-tabs__link:hover,
+.md-tabs__item--active .md-tabs__link {
+  background-color: rgb(255 255 255 / 14%);
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+/* 正文呈现为一张轻盈的阅读卡片。 */
+.md-content__inner {
+  margin-top: 1.35rem;
+  margin-bottom: 2.5rem;
+  padding: 1.8rem 2rem 2.2rem;
+  border: 1px solid var(--course-border);
+  border-radius: 0.9rem;
+  background: var(--course-surface);
+  box-shadow: var(--course-shadow);
+}
+
+.md-typeset h2 {
+  padding-left: 0.72rem;
+  border-left: 0.22rem solid var(--course-orange);
+  color: var(--course-navy);
+  letter-spacing: 0.01em;
+}
+
+[data-md-color-scheme="slate"] .md-typeset h2 {
+  color: #d9ebfb;
+}
+
+.md-typeset a {
+  text-underline-offset: 0.16em;
+}
+
 /* 顶部导航已经包含全部栏目，因此隐藏重复的左侧主导航。 */
 .md-sidebar--primary {
   display: none;
@@ -22,11 +117,44 @@
   display: table;
   width: 100%;
   min-width: 50rem;
+  overflow: hidden;
+  border: 1px solid var(--course-border);
+  border-radius: 0.65rem;
+  box-shadow: 0 0.35rem 1.2rem rgb(20 55 90 / 6%);
 }
 
 .md-typeset__table th {
   text-align: center;
   vertical-align: middle;
+  color: #fff;
+  background: linear-gradient(115deg, var(--course-navy), var(--course-blue));
+}
+
+.md-typeset__table td {
+  vertical-align: middle;
+}
+
+.md-typeset__table tbody tr:nth-child(even) {
+  background-color: rgb(31 105 168 / 4%);
+}
+
+.md-typeset__table tbody tr {
+  transition: background-color 140ms ease;
+}
+
+.md-typeset__table tbody tr:hover {
+  background-color: rgb(24 166 184 / 9%);
+}
+
+.md-typeset__table td a[download] {
+  display: inline-block;
+  padding: 0.28rem 0.58rem;
+  border: 1px solid rgb(25 103 179 / 18%);
+  border-radius: 0.4rem;
+  background-color: rgb(25 103 179 / 7%);
+  font-size: 0.84rem;
+  font-weight: 600;
+  text-decoration: none;
 }
 
 .assignment-heading {
@@ -43,6 +171,13 @@
 /* 首页欢迎内容。 */
 .home-title {
   text-align: center;
+  margin-bottom: 1.6rem !important;
+  color: transparent;
+  background: linear-gradient(110deg, var(--course-navy), var(--course-blue), var(--course-cyan));
+  background-clip: text;
+  -webkit-background-clip: text;
+  font-size: clamp(1.65rem, 3vw, 2.35rem);
+  line-height: 1.35;
 }
 
 /* MkDocs 会根据导航名称自动生成页面标题；仅保留首页欢迎标题。 */
@@ -91,6 +226,12 @@
 }
 
 @media screen and (max-width: 44.984375em) {
+  .md-content__inner {
+    margin-top: 0.7rem;
+    padding: 1.15rem 0.9rem 1.5rem;
+    border-radius: 0.65rem;
+  }
+
   .book-gallery {
     grid-template-columns: 1fr;
   }
