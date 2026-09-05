@@ -32,7 +32,7 @@ theme:
 
 extra_css:
   # 更新样式后递增版本号，避免 GitHub Pages 和浏览器继续使用旧缓存。
-  - stylesheets/extra.css?v=20260905-1
+  - stylesheets/extra.css?v=20260905-2
 
 nav:
   - 课程首页: index.md

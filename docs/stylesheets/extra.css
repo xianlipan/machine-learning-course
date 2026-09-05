@@ -126,8 +126,9 @@ body {
 .md-typeset__table th {
   text-align: center;
   vertical-align: middle;
-  color: #fff;
-  background: linear-gradient(115deg, var(--course-navy), var(--course-blue));
+  color: #24364b;
+  background: #fff;
+  border-bottom: 1px solid #dce3eb;
 }
 
 .md-typeset__table td {
