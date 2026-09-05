@@ -33,6 +33,9 @@ theme:
 extra_css:
   - stylesheets/extra.css
 
+extra_javascript:
+  - javascripts/syllabus-map.js
+
 nav:
   - 课程首页: index.md
   - 课程大纲: syllabus.md

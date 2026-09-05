@@ -95,3 +95,99 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* 课程大纲学习地图。底图与 SVG 共用 2172 × 724 的比例。 */
+.syllabus-map {
+  margin: 1.2rem 0 2rem;
+}
+
+.syllabus-map__viewport {
+  overflow-x: auto;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.6rem;
+  box-shadow: 0 0.35rem 1rem rgb(0 0 0 / 10%);
+}
+
+.syllabus-map__canvas {
+  position: relative;
+  width: 100%;
+  min-width: 56rem;
+  aspect-ratio: 2172 / 724;
+}
+
+.syllabus-map__canvas > img,
+.syllabus-map__overlay {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.syllabus-map__canvas > img {
+  object-fit: contain;
+}
+
+.syllabus-map__overlay {
+  pointer-events: none;
+}
+
+.syllabus-map__route {
+  fill: none;
+  stroke: #ff7a00;
+  stroke-width: 9;
+  stroke-linecap: round;
+  stroke-dasharray: 2 19;
+  opacity: 0.78;
+  transition: opacity 160ms ease;
+}
+
+.syllabus-map--route-hidden .syllabus-map__route {
+  opacity: 0;
+}
+
+.syllabus-map__controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.syllabus-map__controls .md-button {
+  margin: 0;
+  padding: 0.45em 1em;
+  cursor: pointer;
+}
+
+.syllabus-map__controls .md-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.syllabus-map__route-toggle {
+  display: inline-flex;
+  gap: 0.4rem;
+  align-items: center;
+  margin-left: 0.3rem;
+  white-space: nowrap;
+}
+
+.syllabus-map__hint {
+  display: none;
+  margin: 0.6rem 0 0;
+  color: var(--md-default-fg-color--light);
+  font-size: 0.8rem;
+}
+
+@media screen and (max-width: 59.984375em) {
+  .syllabus-map__hint {
+    display: block;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .syllabus-map__route {
+    transition: none;
+  }
+}
