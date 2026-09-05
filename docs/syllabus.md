@@ -17,33 +17,52 @@ hide:
           </filter>
         </defs>
 
-        <!-- 路线坐标使用原图的 2172 × 724 坐标系；微调时修改下面的 d 属性。 -->
+        <!-- 路线坐标使用原图的 2172 × 724 坐标系，坐标点为小人脚底中心。 -->
         <path id="syllabus-route"
               class="syllabus-map__route"
-              d="M 86 410
-                 C 130 400, 175 385, 225 350
-                 S 295 295, 355 350
-                 S 440 420, 500 345
-                 S 585 300, 650 340
-                 S 730 385, 820 365
-                 S 720 480, 610 505
-                 S 690 530, 780 495
-                 S 900 430, 1010 365
-                 S 1110 330, 1195 365
-                 S 1280 420, 1360 455
-                 S 1430 365, 1510 335
-                 S 1570 410, 1515 485
-                 S 1690 420, 1795 345
-                 S 1845 410, 1800 500
-                 S 1940 420, 2045 315" />
+              d="M 35 337
+                 L 142 363
+                 L 228 459
+                 L 389 537
+                 L 543 464
+                 L 718 471
+                 L 851 484
+                 L 542 640
+                 L 713 634
+                 L 1046 543
+                 L 1187 523
+                 L 1279 464
+                 L 1465 553
+                 L 1610 592
+                 L 1737 495
+                 L 1968 574
+                 L 1973 489" />
 
         <g id="syllabus-traveler" class="syllabus-map__traveler" filter="url(#traveler-shadow)" aria-hidden="true">
-          <circle cx="0" cy="-22" r="12" fill="#ffd7b5" stroke="#173f7a" stroke-width="4" />
-          <path d="M -15 -6 Q 0 -16 15 -6 L 12 23 L -12 23 Z" fill="#ffcf3f" stroke="#173f7a" stroke-width="4" />
-          <path d="M -9 22 L -16 43 M 9 22 L 17 43 M -13 2 L -27 16 M 13 2 L 28 13"
-                fill="none" stroke="#173f7a" stroke-width="6" stroke-linecap="round" />
-          <path d="M -13 -31 Q 0 -43 13 -31 L 16 -23 L -16 -23 Z" fill="#2878d0" stroke="#173f7a" stroke-width="3" />
-          <animateMotion id="syllabus-motion" dur="48s" begin="indefinite" fill="freeze" rotate="auto">
+          <!-- 背包学生：图形原点位于双脚之间，方便与路线坐标精确对齐。 -->
+          <ellipse cx="0" cy="2" rx="25" ry="7" fill="#173f7a" opacity="0.22" />
+          <path d="M -17 -58 Q -31 -55 -29 -28 L -20 -24 L -14 -51 Z"
+                fill="#f49b35" stroke="#173f7a" stroke-width="3" />
+          <path d="M -13 -32 L -12 -8 L -23 -1 L -5 -1 L 0 -29"
+                fill="#305da8" stroke="#173f7a" stroke-width="4" stroke-linejoin="round" />
+          <path d="M 0 -29 L 7 -8 L 1 -1 L 20 -1 L 13 -34"
+                fill="#244b8e" stroke="#173f7a" stroke-width="4" stroke-linejoin="round" />
+          <path d="M -16 -60 Q 0 -69 17 -59 L 14 -29 Q 0 -23 -14 -30 Z"
+                fill="#ffd54a" stroke="#173f7a" stroke-width="4" />
+          <path d="M -14 -54 L -28 -34 M 14 -54 L 27 -36"
+                fill="none" stroke="#ffd7b5" stroke-width="8" stroke-linecap="round" />
+          <path d="M -14 -54 L -25 -39 M 14 -54 L 24 -40"
+                fill="none" stroke="#173f7a" stroke-width="3" stroke-linecap="round" />
+          <circle cx="0" cy="-78" r="17" fill="#ffd7b5" stroke="#173f7a" stroke-width="4" />
+          <path d="M -16 -82 Q -11 -101 8 -96 Q 20 -92 15 -75 Q 8 -86 -2 -85 Q -9 -82 -16 -82 Z"
+                fill="#493126" stroke="#173f7a" stroke-width="3" />
+          <circle cx="6" cy="-78" r="2" fill="#173f7a" />
+          <path d="M 6 -70 Q 12 -67 15 -72" fill="none" stroke="#b55b4c" stroke-width="2" stroke-linecap="round" />
+          <path d="M -20 -95 L 1 -105 L 22 -95 L 1 -87 Z M -12 -91 L -12 -83"
+                fill="#2878d0" stroke="#173f7a" stroke-width="3" stroke-linejoin="round" />
+          <path d="M -23 -1 L -7 -1 M 1 -1 L 20 -1"
+                stroke="#f7f9fc" stroke-width="5" stroke-linecap="round" />
+          <animateMotion id="syllabus-motion" dur="48s" begin="indefinite" fill="freeze" rotate="0">
             <mpath href="#syllabus-route" />
           </animateMotion>
         </g>
