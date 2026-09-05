@@ -4,9 +4,7 @@ hide:
 ---
 ## 课程安排
 
-下面的学习地图展示了从机器学习基础到生成式人工智能的完整学习路线。点击“开始探索”，小人会按照课程序号从起点走到项目展示。
-
-<div class="syllabus-map" data-syllabus-map>
+<div class="syllabus-map">
   <div class="syllabus-map__viewport">
     <div class="syllabus-map__canvas">
       <img src="../images/学习大纲.png" alt="机器学习探索之旅课程学习大纲，共包含 16 次课程">
@@ -62,7 +60,7 @@ hide:
                 fill="#2878d0" stroke="#173f7a" stroke-width="3" stroke-linejoin="round" />
           <path d="M -23 -1 L -7 -1 M 1 -1 L 20 -1"
                 stroke="#f7f9fc" stroke-width="5" stroke-linecap="round" />
-          <animateMotion id="syllabus-motion" dur="48s" begin="indefinite" fill="freeze" rotate="0">
+          <animateMotion dur="48s" begin="0s" fill="freeze" rotate="0">
             <mpath href="#syllabus-route" />
           </animateMotion>
         </g>
@@ -70,15 +68,6 @@ hide:
     </div>
   </div>
 
-  <div class="syllabus-map__controls" aria-label="学习路线动画控制">
-    <button type="button" class="md-button md-button--primary" data-map-action="start">开始探索</button>
-    <button type="button" class="md-button" data-map-action="pause" disabled>暂停</button>
-    <button type="button" class="md-button" data-map-action="reset">回到起点</button>
-    <label class="syllabus-map__route-toggle">
-      <input type="checkbox" data-map-action="route" checked>
-      显示路线
-    </label>
-  </div>
   <p class="syllabus-map__hint">手机端可左右滑动查看完整地图。</p>
 </div>
 

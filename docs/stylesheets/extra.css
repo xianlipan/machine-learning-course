@@ -142,37 +142,6 @@
   transition: opacity 160ms ease;
 }
 
-.syllabus-map--route-hidden .syllabus-map__route {
-  opacity: 0;
-}
-
-.syllabus-map__controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-  align-items: center;
-  margin-top: 1rem;
-}
-
-.syllabus-map__controls .md-button {
-  margin: 0;
-  padding: 0.45em 1em;
-  cursor: pointer;
-}
-
-.syllabus-map__controls .md-button:disabled {
-  cursor: not-allowed;
-  opacity: 0.45;
-}
-
-.syllabus-map__route-toggle {
-  display: inline-flex;
-  gap: 0.4rem;
-  align-items: center;
-  margin-left: 0.3rem;
-  white-space: nowrap;
-}
-
 .syllabus-map__hint {
   display: none;
   margin: 0.6rem 0 0;
