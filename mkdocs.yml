@@ -31,7 +31,8 @@ theme:
         name: 切换到浅色模式
 
 extra_css:
-  - stylesheets/extra.css
+  # 更新样式后递增版本号，避免 GitHub Pages 和浏览器继续使用旧缓存。
+  - stylesheets/extra.css?v=20260905-1
 
 nav:
   - 课程首页: index.md
