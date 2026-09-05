@@ -7,7 +7,7 @@ hide:
 
 | 课次 | 课程主题 | 课件 | 课堂代码 | <span class="assignment-heading">作业<br><small>（作业请在师星学堂提交）</small></span> |
 | --- | --- | --- | --- | --- |
-| 第 1 次课 | 机器学习简介 | <a href="../files/slides/1机器学习简介.pdf" download>下载课件</a> | 待发布 | 待发布 |
+| 第 1 次课 | 机器学习简介 | <a href="../files/slides/1机器学习简介.pdf" download>下载课件</a> | <a href="../files/slides/Cha1_demo.zip" download>下载代码</a> | <a href="../files/slides/1作业.pdf" download>下载作业</a> |
 | 第 2 次课 | 聚类 | 待发布 | 待发布 | 待发布 |
 | 第 3 次课 | 降维 | 待发布 | 待发布 | 待发布 |
 | 第 4 次课 | 线性回归与正则 | 待发布 | 待发布 | 待发布 |

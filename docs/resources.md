@@ -2,7 +2,6 @@
 hide:
   - navigation
 ---
-
 ## 书籍
 
 <div class="book-gallery">
@@ -35,6 +34,6 @@ hide:
 - [Connected Papers](https://www.connectedpapers.com/)：论文关系可视化工具，可从一篇种子论文出发生成相关研究图谱，帮助查找经典工作和后续研究。
 - [Zotero](https://www.zotero.org/)：免费开源的文献管理工具，可收集和分类论文、管理 PDF，并在论文写作时自动生成引用和参考文献。
 
-## 论文
+## 其他资料
 
-课程相关论文与延伸阅读材料将陆续更新。
+后续补充。
