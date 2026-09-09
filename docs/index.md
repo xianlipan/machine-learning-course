@@ -6,8 +6,6 @@ hide:
   <div class="home-hero__copy">
     <p class="home-eyebrow">MACHINE LEARNING · 研究生课程</p>
     <h1 id="welcome-title">从数学出发，<br>理解<span>机器学习。</span></h1>
-    <p class="home-hero__intro">看懂模型背后的原理与逻辑，<br>学会选择、分析与改进。</p>
-    <a class="home-start" href="coursework/">开始课程探索 <span aria-hidden="true">↗</span></a>
   </div>
   <div class="home-lab" aria-hidden="true">
     <div class="lab-orbit lab-orbit--one"></div><div class="lab-orbit lab-orbit--two"></div>
