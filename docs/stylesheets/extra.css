@@ -93,9 +93,11 @@ body {
   text-underline-offset: 0.16em;
 }
 
-/* 顶部导航已经包含全部栏目，因此隐藏重复的左侧主导航。 */
-.md-sidebar--primary {
-  display: none;
+/* 仅在显示顶部导航的桌面端隐藏重复侧栏，保留手机和平板的抽屉导航。 */
+@media screen and (min-width: 76.25em) {
+  .md-sidebar--primary {
+    display: none;
+  }
 }
 
 @media screen and (min-width: 60em) {
