@@ -23,10 +23,13 @@ def create_app(labels_path=None, db_path=None):
 
     @asynccontextmanager
     async def lifespan(app):
+        app.state.labels = None
         try:
             app.state.labels = load_labels(labels_path)
+        except FileNotFoundError:
+            logging.warning('教师尚未配置标签，服务已启动，评测暂未开放。')
         except (OSError, ValueError):
-            raise RuntimeError('隐藏标签缺失或格式错误，请教师检查服务器配置。') from None
+            raise RuntimeError('隐藏标签不可读取或格式错误，请教师检查服务器配置。') from None
         initialize(db_path)
         yield
 
@@ -64,7 +67,7 @@ def create_app(labels_path=None, db_path=None):
 
     @app.get('/api/health')
     def health():
-        return {'status': 'ok'}
+        return {'status': 'ok', 'evaluation_ready': app.state.labels is not None}
 
     @app.get('/api/leaderboard')
     def get_leaderboard():
@@ -72,6 +75,8 @@ def create_app(labels_path=None, db_path=None):
 
     @app.post('/api/evaluate')
     async def submit(request: Request):
+        if app.state.labels is None:
+            raise HTTPException(503, '教师尚未配置测试标签，评测暂未开放，请稍后再试。')
         if not request.headers.get('content-type', '').startswith('multipart/form-data'):
             raise HTTPException(415, '请使用表单上传 submission.csv。')
         try:

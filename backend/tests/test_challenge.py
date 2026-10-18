@@ -95,7 +95,36 @@ def test_upload_errors_and_cors(service):
     assert response.headers['access-control-allow-origin'] == 'https://xianlipan.github.io'
 
 
-def test_missing_labels_prevents_startup(tmp_path):
+def test_first_deploy_then_upload_and_restart_preserves_scores(tmp_path):
+    labels = tmp_path / 'labels.csv'
+    db = tmp_path / 'scores.db'
+    app = create_app(labels, db)
+    with TestClient(app) as client:
+        assert client.get('/api/health').json() == {'status': 'ok', 'evaluation_ready': False}
+        assert client.get('/api/leaderboard').json() == {'leaderboard': []}
+        blocked = submit(client)
+        assert blocked.status_code == 503
+        assert '尚未配置' in blocked.json()['detail']
+        assert client.get('/api/leaderboard').json() == {'leaderboard': []}
+        labels.write_text('sample_id,totalPrice\nTEST_1,100\nTEST_2,200\nTEST_3,300\n')
+        # Private file upload does not open evaluation until the service restarts.
+        assert client.get('/api/health').json()['evaluation_ready'] is False
+    with TestClient(create_app(labels, db)) as client:
+        assert client.get('/api/health').json()['evaluation_ready'] is True
+        assert submit(client, offset=5).status_code == 200
+    with TestClient(create_app(labels, db)) as client:
+        assert client.get('/api/leaderboard').json()['leaderboard'][0]['rmse'] == pytest.approx(5)
+        assert submit(client, offset=10).json()['submission_count'] == 2
+    labels.unlink()
+    with TestClient(create_app(labels, db)) as client:
+        assert client.get('/api/health').json()['evaluation_ready'] is False
+        assert submit(client).status_code == 503
+        assert len(client.get('/api/leaderboard').json()['leaderboard']) == 1
+
+
+def test_invalid_labels_prevents_startup(tmp_path):
+    labels = tmp_path / 'labels.csv'
+    labels.write_text('sample_id,totalPrice\nTEST_1,NaN\n')
     with pytest.raises(RuntimeError, match='隐藏标签'):
-        with TestClient(create_app(tmp_path / 'missing.csv', tmp_path / 'db.db')):
+        with TestClient(create_app(labels, tmp_path / 'db.db')):
             pass
