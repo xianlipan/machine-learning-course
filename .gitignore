@@ -1,0 +1,9 @@
+backend/data/*
+!backend/data/.gitkeep
+*教师保留*.csv
+*.db
+*.db-*
+.venv/
+__pycache__/
+site/
+.pytest_cache/

@@ -18,6 +18,13 @@ hide:
   </div>
 </section>
 
+<section class="challenge-home" aria-labelledby="challenge-home-title">
+  <p class="home-eyebrow">在线学习挑战 · LINEAR REGRESSION</p>
+  <h2 id="challenge-home-title">北京房价预测挑战</h2>
+  <p>使用北京市真实二手房数据完成完整的线性回归实验。自行进行数据预处理、特征选择和模型训练，在隐藏测试标签上检验模型泛化能力。</p>
+  <a class="md-button md-button--primary" href="challenge/">进入挑战 →</a>
+</section>
+
 <div class="home-letter-label"><span aria-hidden="true">✦</span> 课程寄语 <small>A NOTE TO OUR LEARNERS</small></div>
 
 各位同学，欢迎来到《机器学习》课程。

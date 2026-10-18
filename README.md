@@ -16,3 +16,7 @@ https://xianlipan.github.io/machine-learning-course/
 ## 维护方式
 
 修改或添加课程资料后，通过 GitHub Desktop 提交并推送到 GitHub，网站将自动更新。
+
+## 在线学习挑战
+
+北京房价预测挑战页面位于 `docs/challenge.md`，公开实验数据位于 `docs/assets/challenge/`。独立后端的本地运行、私密标签配置及服务器部署步骤见 [backend/README.md](backend/README.md)。前端 API 地址统一在 `docs/javascripts/challenge-config.js` 设置。
