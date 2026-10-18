@@ -12,6 +12,7 @@ hide:
     <section class="challenge-panel" aria-labelledby="download-title">
       <h2 id="download-title" class="challenge-section-title">下载实验数据 <span class="challenge-title-note">使用 sample_id 对齐训练 X 与 y，sample_id 仅用作标识。</span></h2>
       <div class="challenge-downloads">
+        <a href="../assets/challenge/数据说明.txt" download>数据说明 <small>TXT · 文件用途与字段解释</small></a>
         <a href="../assets/challenge/01_北京房价_训练集_X.csv" download>01 · 训练集 X <small>CSV · 输入特征</small></a>
         <a href="../assets/challenge/02_北京房价_训练集_y.csv" download>02 · 训练集 y <small>CSV · 真实总价</small></a>
         <a href="../assets/challenge/03_北京房价_测试集_X.csv" download>03 · 测试集 X <small>CSV · 待预测样本</small></a>
