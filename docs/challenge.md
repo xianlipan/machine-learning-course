@@ -4,16 +4,16 @@ hide:
   - toc
 ---
 
-# 北京房价线性回归预测挑战 { .challenge-title }
+# 北京房价预测挑战 { .challenge-title }
 
-本实验使用北京市二手房成交数据。你的任务是利用训练数据建立线性回归模型，自行决定使用哪些特征以及如何进行数据预处理，然后对给定测试集进行预测。测试集真实房价不会公开；提交预测结果后，平台将在隐藏标签上计算 **RMSE**，数值越小，模型预测效果越好。
+本实验使用北京市二手房成交数据，你的任务是利用训练数据建立回归预测模型，自行决定使用哪些特征以及如何进行数据预处理，然后对给定测试集进行预测。提交预测结果后，平台将自行计算预测与真实结果间的 **RMSE**，数值越小，模型预测效果越好。
 
 <div class="challenge-layout" id="housing-challenge">
   <div class="challenge-main">
     <section class="challenge-panel" aria-labelledby="download-title">
       <p class="challenge-kicker">01 · 准备数据</p>
       <h2 id="download-title">下载实验数据</h2>
-      <p>255,081 条训练样本 · 63,770 条测试样本。使用 sample_id 对齐训练 X 与 y；sample_id 仅用作标识。</p>
+      <p>使用 sample_id 对齐训练 X 与 y，sample_id 仅用作标识。</p>
       <div class="challenge-downloads">
         <a href="../assets/challenge/01_北京房价_训练集_X.csv" download>01 · 训练集 X <small>CSV · 输入特征</small></a>
         <a href="../assets/challenge/02_北京房价_训练集_y.csv" download>02 · 训练集 y <small>CSV · 真实总价</small></a>
@@ -25,10 +25,9 @@ hide:
       <p class="challenge-kicker">02 · 完成实验</p>
       <h2 id="rules-title">实验规则</h2>
       <ul>
-        <li>预测目标为 <code>totalPrice</code>，单位为万元；使用 <code>LinearRegression</code> 模型。</li>
-        <li><code>price</code> 已从所有输入数据中删除。你可以自行选择输入特征。</li>
+        <li>预测目标为 <code>totalPrice</code>，单位为万元，建议使用 <code>LinearRegression</code> 模型。</li>
         <li>自行完成数据探索、清洗、缺失值和异常值处理、类别编码，以及可选的标准化或归一化。</li>
-        <li>所有预处理规则及参数必须只根据训练集确定。测试集不能参与模型训练或预处理参数估计。</li>
+        <li>注意：所有预处理规则及参数必须只根据训练集确定，测试集不能参与模型训练或预处理参数估计。</li>
         <li>最终提交 <code>prediction</code>；按 RMSE 从小到大排名，仅保留个人历史最好成绩。</li>
       </ul>
       <details><summary>submission.csv 格式示例</summary>
@@ -50,7 +49,7 @@ TEST_000003,198.46</code></pre>
         <label class="challenge-upload">上传 submission.csv<input id="challenge-file" name="file" type="file" accept=".csv,text/csv" required></label>
         <p id="challenge-filename" class="challenge-muted" aria-live="polite">尚未选择文件</p>
         <button class="md-button md-button--primary" id="challenge-submit" type="submit">开始评测</button>
-        <p class="challenge-muted">姓名及最好成绩会显示在公开排行榜中，学号不公开。平台只接收预测 CSV；模型与预处理是否符合规则由课程实验检查。</p>
+        <p class="challenge-muted">姓名及最好成绩会显示在公开排行榜中，学号不公开。平台只接收预测 CSV。</p>
       </form>
       <div id="challenge-result" role="status" aria-live="polite" hidden></div>
     </section>
