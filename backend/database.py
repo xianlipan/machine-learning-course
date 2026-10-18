@@ -3,6 +3,12 @@ import sqlite3
 from contextlib import contextmanager
 from datetime import datetime, timezone
 
+MAX_SUBMISSIONS = 3
+
+
+class SubmissionLimitReached(ValueError):
+    pass
+
 
 @contextmanager
 def connect(path):
@@ -21,12 +27,40 @@ def initialize(path):
             student_id TEXT PRIMARY KEY, name TEXT NOT NULL,
             best_rmse REAL NOT NULL, submission_count INTEGER NOT NULL,
             updated_at TEXT NOT NULL)''')
+        db.execute('''CREATE TABLE IF NOT EXISTS submission_limits (
+            kind TEXT NOT NULL, identity TEXT NOT NULL, submission_count INTEGER NOT NULL,
+            PRIMARY KEY (kind, identity))''')
+        # Import existing valid submissions without clearing scores or counters.
+        db.execute('''INSERT OR IGNORE INTO submission_limits
+            SELECT 'student_id', student_id, submission_count FROM leaderboard''')
+        db.execute('''INSERT OR IGNORE INTO submission_limits
+            SELECT 'name', name, SUM(submission_count) FROM leaderboard GROUP BY name''')
+
+
+def _check_limit(db, student_id, name):
+    rows = db.execute('''SELECT submission_count FROM submission_limits
+        WHERE (kind='student_id' AND identity=?) OR (kind='name' AND identity=?)''',
+        (student_id, name)).fetchall()
+    used = max((row['submission_count'] for row in rows), default=0)
+    if used >= MAX_SUBMISSIONS:
+        raise SubmissionLimitReached('已达到提交上限：同一姓名或同一学号最多可成功提交三次。')
+    return used
+
+
+def check_limit(path, student_id, name):
+    with connect(path) as db:
+        _check_limit(db, student_id, name)
 
 
 def record(path, student_id, name, rmse):
     now = datetime.now(timezone.utc).isoformat()
     with connect(path) as db:
         db.execute('BEGIN IMMEDIATE')
+        used = _check_limit(db, student_id, name)
+        for kind, identity in (('student_id', student_id), ('name', name)):
+            db.execute('''INSERT INTO submission_limits VALUES (?, ?, 1)
+                ON CONFLICT(kind, identity) DO UPDATE SET
+                submission_count=submission_limits.submission_count+1''', (kind, identity))
         db.execute('''INSERT INTO leaderboard VALUES (?, ?, ?, 1, ?)
             ON CONFLICT(student_id) DO UPDATE SET
             name=excluded.name,
@@ -37,7 +71,8 @@ def record(path, student_id, name, rmse):
         rank = 1 + db.execute('SELECT COUNT(*) FROM leaderboard WHERE best_rmse < ?', (own['best_rmse'],)).fetchone()[0]
         total = db.execute('SELECT COUNT(*) FROM leaderboard').fetchone()[0]
         return dict(best_rmse=own['best_rmse'], rank=rank, total_students=total,
-                    submission_count=own['submission_count'], submitted_at=now)
+                    submission_count=own['submission_count'], submitted_at=now,
+                    remaining_submissions=MAX_SUBMISSIONS-used-1)
 
 
 def leaderboard(path):

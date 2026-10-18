@@ -11,7 +11,6 @@ hide:
 <div class="challenge-layout" id="housing-challenge">
   <div class="challenge-main">
     <section class="challenge-panel" aria-labelledby="download-title">
-      <p class="challenge-kicker">01 · 准备数据</p>
       <h2 id="download-title">下载实验数据</h2>
       <p>使用 sample_id 对齐训练 X 与 y，sample_id 仅用作标识。</p>
       <div class="challenge-downloads">
@@ -21,15 +20,9 @@ hide:
         <a href="../assets/challenge/05_submission示例.csv" download>05 · 提交模板 <small>CSV · 填写 prediction</small></a>
       </div>
     </section>
-    <section class="challenge-panel" aria-labelledby="rules-title">
-      <p class="challenge-kicker">02 · 完成实验</p>
-      <h2 id="rules-title">实验规则</h2>
-      <ul>
-        <li>预测目标为 <code>totalPrice</code>，单位为万元，建议使用 <code>LinearRegression</code> 模型。</li>
-        <li>自行完成数据探索、清洗、缺失值和异常值处理、类别编码，以及可选的标准化或归一化。</li>
-        <li>注意：所有预处理规则及参数必须只根据训练集确定，测试集不能参与模型训练或预处理参数估计。</li>
-        <li>最终提交 <code>prediction</code>；按 RMSE 从小到大排名，仅保留个人历史最好成绩。</li>
-      </ul>
+    <section class="challenge-panel" aria-labelledby="submit-title">
+      <h2 id="submit-title">提交预测结果</h2>
+      <p class="challenge-limit-notice">每人最多可以提交三次。同一姓名或同一学号任一项达到三次，即达到提交上限。</p>
       <details><summary>submission.csv 格式示例</summary>
         <pre><code>sample_id,prediction
 TEST_000001,356.72
@@ -37,10 +30,6 @@ TEST_000002,421.31
 TEST_000003,198.46</code></pre>
         <p>不要修改 sample_id。prediction 为预测的 totalPrice，单位为万元。正式提交必须包含全部测试样本，每个 sample_id 恰好出现一次；行顺序不限，仅允许这两列。请保存为 UTF-8 CSV，文件不超过 10 MB。</p>
       </details>
-    </section>
-    <section class="challenge-panel" aria-labelledby="submit-title">
-      <p class="challenge-kicker">03 · 检验泛化能力</p>
-      <h2 id="submit-title">提交预测结果</h2>
       <form id="challenge-form">
         <div class="challenge-fields">
           <label>姓名<input name="name" required maxlength="60" autocomplete="name" placeholder="请输入姓名"></label>
@@ -57,11 +46,11 @@ TEST_000003,198.46</code></pre>
   <aside class="challenge-panel challenge-ranking" aria-labelledby="ranking-title">
     <p class="challenge-kicker">LEADERBOARD</p>
     <h2 id="ranking-title">挑战排行榜</h2>
-    <p class="challenge-muted">个人历史最好成绩 · 前 20 名<br>RMSE 单位：万元，越小越好</p>
+    <p class="challenge-muted">个人历史最好成绩 · 前 20 名</p>
     <button type="button" id="challenge-refresh" class="md-button">刷新排行榜</button>
     <p id="challenge-ranking-status" role="status">正在加载排行榜……</p>
     <div class="challenge-table-wrap">
-      <table class="challenge-table"><thead><tr><th scope="col">排名</th><th scope="col">姓名</th><th scope="col">RMSE</th></tr></thead><tbody id="challenge-ranking-body"></tbody></table>
+      <table class="challenge-table"><thead><tr><th scope="col">排名</th><th scope="col">姓名</th><th scope="col">RMSE（万元）</th></tr></thead><tbody id="challenge-ranking-body"></tbody></table>
     </div>
     <p class="challenge-muted">同分并列排名。评测后，即使不在前 20 名，也能查看自己的实际排名。</p>
   </aside>

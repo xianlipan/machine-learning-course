@@ -29,7 +29,9 @@ python -m venv .venv
 - `GET /api/leaderboard`：返回 `{"leaderboard":[{"rank":1,"name":"张三","rmse":52.37}]}`，最多 20 人，不含学号。
 - `POST /api/evaluate`：`multipart/form-data`，恰好三个字段 `name`、`student_id`、`file`。file 必须是 CSV（最多 10 MiB），恰好两列 `sample_id,prediction`，允许列顺序变化，ID 必须与全部测试 ID 一致且不重复。只支持 UTF-8（可带 BOM）。
 
-成功返回 `success,name,student_id,rmse,best_rmse,rank,total_students,submission_count,submitted_at`。`rmse` 是本次成绩，`rank` 按历史最好成绩计算；同分使用竞赛排名（1、1、3）。提交时间为带时区的 UTC ISO 字符串，浏览器按本地时区显示。失败返回 HTTP 400/413/415 和中文 `detail`；缺少标签时返回 HTTP 503，不评分、不记录提交。无效提交不计次数。
+成功返回 `success,name,student_id,rmse,best_rmse,rank,total_students,submission_count,remaining_submissions,submitted_at`。`rmse` 是本次成绩，`rank` 按历史最好成绩计算；同分使用竞赛排名（1、1、3）。`submission_count` 是该学号的成功提交次数，`remaining_submissions` 是综合姓名和学号后剩余的可提交次数。提交时间为带时区的 UTC ISO 字符串，浏览器按本地时区显示。失败返回 HTTP 400/413/415 和中文 `detail`；缺少标签时返回 HTTP 503，不评分、不记录提交。无效提交不计次数。任一姓名或学号累计成功提交达到三次后，后续提交返回 HTTP 429，不更新成绩、不增加次数。
+
+提交上限由 SQLite 的独立姓名、学号计数表保存；每次成功提交分别累加，修改姓名或更换学号不会清除原身份计数。上限检查和计数更新在同一写事务内完成，避免并发突破三次限制。首次升级会从已有排行榜迁移学号次数，并按当前存储姓名汇总历史次数；旧系统没有保存的历史曾用姓名无法追溯。升级、重启不清空排行榜或提交计数。
 
 SQLite 使用事务按 student_id 原子更新。更差成绩保留 best_rmse，但次数仍加一；姓名和 updated_at 更新到最近一次有效提交。默认数据库 `backend/leaderboard.db`。支持用 `CHALLENGE_DB_PATH` 配置持久磁盘路径。数据库、日志和标签不应放入静态托管目录。
 
@@ -42,7 +44,7 @@ SQLite 使用事务按 student_id 原子更新。更差成绩保留 best_rmse，
 5. 以服务管理器运行 `python -m uvicorn backend.app:app --host 127.0.0.1 --port 8001`，通过 Nginx/Caddy 等反向代理提供 HTTPS。只代理 FastAPI，不挂载 `backend/data/`。代理请求体上限设为 11 MB（给 multipart 留开销），配置合理超时。
 6. 验证 HTTPS `/api/health`，修改 `challenge-config.js` 为正式后端地址，再提交网站改动。GitHub Actions 继续构建原 MkDocs 站点；Pages 不会运行 Python 后端。
 
-CORS 遵循 [FastAPI 官方文档](https://fastapi.tiangolo.com/tutorial/cors/)。本服务没有身份认证，姓名和学号由学生填写，不能防止冒用；CSV 结果也无法证明学生实际使用的模型或训练方法，需结合课程实验材料检查。当前不限制有效提交次数，不返回逐样本结果。
+CORS 遵循 [FastAPI 官方文档](https://fastapi.tiangolo.com/tutorial/cors/)。本服务没有身份认证，姓名和学号由学生填写，不能防止冒用；CSV 结果也无法证明学生实际使用的模型或训练方法，需结合课程实验材料检查。每个姓名或学号最多成功提交三次，不返回逐样本结果。同名学生共享姓名额度，符合按姓名或学号任一项限制的规则。
 
 ## 验证
 

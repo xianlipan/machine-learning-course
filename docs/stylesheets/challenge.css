@@ -27,7 +27,7 @@
 .challenge-layout button:disabled { opacity: .6; cursor: wait; }
 #challenge-result:not([hidden]) { margin-top: 1rem; padding: 1rem; border: 1px solid var(--course-border); border-left: .2rem solid var(--course-cyan); border-radius: .4rem; overflow-wrap: anywhere; }
 .md-typeset .challenge-score { font-size: 1.35rem; font-weight: 700; color: var(--md-accent-fg-color); }
-.challenge-error { color: var(--md-typeset-a-color); }
+.challenge-error { color: #b42318; }
 .challenge-table-wrap { overflow-x: auto; }
 .md-typeset .challenge-table { width: 100%; border-collapse: collapse; font-size: .75rem; }
 .challenge-table th, .challenge-table td { text-align: left; padding: .6rem .3rem; border-bottom: 1px solid var(--course-border); overflow-wrap: anywhere; }
@@ -40,3 +40,7 @@
 @media (max-width: 420px) {
   .challenge-downloads, .challenge-fields { grid-template-columns: minmax(0, 1fr); }
 }
+
+.md-typeset .challenge-limit-notice { color: #b42318; font-weight: 700; }
+[data-md-color-scheme="slate"] .challenge-limit-notice { color: #ff8a80; }
+[data-md-color-scheme="slate"] .challenge-error { color: #ff8a80; }

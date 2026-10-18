@@ -33,11 +33,11 @@ theme:
 extra_css:
   # 更新样式后递增版本号，避免 GitHub Pages 和浏览器继续使用旧缓存。
   - stylesheets/extra.css?v=20260911-1
-  - stylesheets/challenge.css?v=20261018-1
+  - stylesheets/challenge.css?v=20261018-3
 
 extra_javascript:
   - javascripts/challenge-config.js?v=20261018-2
-  - javascripts/challenge.js?v=20261018-1
+  - javascripts/challenge.js?v=20261018-3
 
 nav:
   - 课程首页: index.md

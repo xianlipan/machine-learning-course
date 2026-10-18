@@ -77,6 +77,7 @@
         result.append(score);
         const details = document.createElement('p');
         details.textContent = `当前排名：${data.rank} / ${data.total_students}（按历史最好成绩） · 最好 RMSE：${Number(data.best_rmse).toFixed(2)} 万元 · 你已提交：${data.submission_count} 次`;
+        if (Number.isInteger(data.remaining_submissions)) details.textContent += ` · 剩余可提交：${data.remaining_submissions} 次`;
         result.append(details);
         const time = document.createElement('p');
         time.textContent = `提交时间：${new Date(data.submitted_at).toLocaleString('zh-CN')}`;
