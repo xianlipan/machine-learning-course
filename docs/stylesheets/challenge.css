@@ -14,6 +14,8 @@
 .challenge-ranking { min-width: 0; }
 .challenge-kicker { color: var(--md-accent-fg-color); font-size: .67rem; font-weight: 700; letter-spacing: .08em; margin: 0; }
 .challenge-muted { color: var(--md-default-fg-color--light); font-size: .72rem; }
+.challenge-section-title { display: flex; flex-wrap: wrap; align-items: baseline; gap: .3rem .6rem; }
+.challenge-title-note { color: var(--md-default-fg-color--light); font-size: .7rem; font-weight: 400; line-height: 1.6; letter-spacing: normal; }
 .challenge-downloads, .challenge-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .7rem; }
 .challenge-downloads a { border: 1px solid var(--course-border); border-radius: .45rem; padding: .7rem; font-weight: 600; }
 .challenge-downloads a:hover { border-color: var(--md-accent-fg-color); }
@@ -33,6 +35,10 @@
 .challenge-table th, .challenge-table td { text-align: left; padding: .6rem .3rem; border-bottom: 1px solid var(--course-border); overflow-wrap: anywhere; }
 .challenge-table th:last-child, .challenge-table td:last-child { text-align: right; font-variant-numeric: tabular-nums; }
 .challenge-top td:first-child { color: var(--md-accent-fg-color); font-weight: 700; }
+.challenge-current { background: rgb(24 166 184 / 12%); }
+.challenge-current td:first-child { box-shadow: inset .18rem 0 var(--course-cyan); padding-left: .45rem; }
+.challenge-current-badge { display: block; width: fit-content; font-size: .6rem; font-weight: 700; color: var(--md-accent-fg-color); }
+.challenge-remaining { font-weight: 700; }
 @media (max-width: 760px) {
   .challenge-layout { grid-template-columns: minmax(0, 1fr); }
   .challenge-panel, .challenge-home { padding: 1rem; }

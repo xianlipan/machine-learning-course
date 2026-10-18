@@ -9,6 +9,7 @@
     const result = get('challenge-result');
     const button = get('challenge-submit');
     const rankingStatus = get('challenge-ranking-status');
+    let highlightedEntryId = null;
     const base = (window.CHALLENGE_API_BASE || '').replace(/\/+$/, '');
     const configured = /^https?:\/\//.test(base) && !base.includes('YOUR-BACKEND-DOMAIN');
 
@@ -37,9 +38,20 @@
         data.leaderboard.forEach((entry) => {
           const row = document.createElement('tr');
           if (entry.rank <= 3) row.className = 'challenge-top';
-          [entry.rank, entry.name, Number(entry.rmse).toFixed(2)].forEach((value) => {
+          const isCurrent = highlightedEntryId !== null && entry.entry_id === highlightedEntryId;
+          if (isCurrent) {
+            row.classList.add('challenge-current');
+            row.setAttribute('aria-current', 'true');
+          }
+          [entry.rank, entry.name, Number(entry.rmse).toFixed(2)].forEach((value, index) => {
             const cell = document.createElement('td');
             cell.textContent = value;
+            if (isCurrent && index === 1) {
+              const badge = document.createElement('span');
+              badge.className = 'challenge-current-badge';
+              badge.textContent = '本次提交';
+              cell.append(badge);
+            }
             row.append(cell);
           });
           body.append(row);
@@ -67,6 +79,7 @@
       result.textContent = '正在评测，请稍候……';
       try {
         const data = await api('/api/evaluate', { method: 'POST', body: payload });
+        highlightedEntryId = data.entry_id ?? null;
         result.replaceChildren();
         const title = document.createElement('h3');
         title.textContent = '评测完成 · 提交成功';
@@ -77,8 +90,18 @@
         result.append(score);
         const details = document.createElement('p');
         details.textContent = `当前排名：${data.rank} / ${data.total_students}（按历史最好成绩） · 最好 RMSE：${Number(data.best_rmse).toFixed(2)} 万元 · 你已提交：${data.submission_count} 次`;
-        if (Number.isInteger(data.remaining_submissions)) details.textContent += ` · 剩余可提交：${data.remaining_submissions} 次`;
         result.append(details);
+        if (data.rank > 10) {
+          const encouragement = document.createElement('p');
+          encouragement.textContent = '前十还没挤进去？别急，你的模型正在热身，下一位黑马说不定就是你！';
+          result.append(encouragement);
+        }
+        if (Number.isInteger(data.remaining_submissions)) {
+          const remaining = document.createElement('p');
+          remaining.className = 'challenge-remaining';
+          remaining.textContent = `剩余提交次数：${data.remaining_submissions} 次`;
+          result.append(remaining);
+        }
         const time = document.createElement('p');
         time.textContent = `提交时间：${new Date(data.submitted_at).toLocaleString('zh-CN')}`;
         result.append(time);
@@ -86,7 +109,10 @@
       } catch (error) {
         result.className = 'challenge-error';
         result.textContent = `提交失败：${error.message}`;
-      } finally { button.disabled = false; }
+      } finally {
+        button.disabled = false;
+        if (window.matchMedia('(max-width: 760px)').matches) result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
     });
     refresh();
   }

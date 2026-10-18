@@ -67,17 +67,18 @@ def record(path, student_id, name, rmse):
             best_rmse=MIN(leaderboard.best_rmse, excluded.best_rmse),
             submission_count=leaderboard.submission_count+1,
             updated_at=excluded.updated_at''', (student_id, name, rmse, now))
-        own = db.execute('SELECT * FROM leaderboard WHERE student_id=?', (student_id,)).fetchone()
+        own = db.execute('SELECT rowid AS entry_id, * FROM leaderboard WHERE student_id=?', (student_id,)).fetchone()
         rank = 1 + db.execute('SELECT COUNT(*) FROM leaderboard WHERE best_rmse < ?', (own['best_rmse'],)).fetchone()[0]
         total = db.execute('SELECT COUNT(*) FROM leaderboard').fetchone()[0]
         return dict(best_rmse=own['best_rmse'], rank=rank, total_students=total,
+                    entry_id=own['entry_id'],
                     submission_count=own['submission_count'], submitted_at=now,
                     remaining_submissions=MAX_SUBMISSIONS-used-1)
 
 
 def leaderboard(path):
     with connect(path) as db:
-        rows = db.execute('''SELECT RANK() OVER (ORDER BY best_rmse) AS rank,
+        rows = db.execute('''SELECT rowid AS entry_id, RANK() OVER (ORDER BY best_rmse) AS rank,
             name, best_rmse AS rmse FROM leaderboard
-            ORDER BY best_rmse, student_id LIMIT 20''').fetchall()
+            ORDER BY best_rmse, student_id LIMIT 10''').fetchall()
         return [dict(row) for row in rows]

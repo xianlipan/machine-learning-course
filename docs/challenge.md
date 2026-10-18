@@ -3,16 +3,14 @@ hide:
   - navigation
   - toc
 ---
+# 北京房价预测挑战
 
-# 北京房价预测挑战 { .challenge-title }
-
-本实验使用北京市二手房成交数据，你的任务是利用训练数据建立回归预测模型，自行决定使用哪些特征以及如何进行数据预处理，然后对给定测试集进行预测。提交预测结果后，平台将自行计算预测与真实结果间的 **RMSE**，数值越小，模型预测效果越好。
+本实验使用北京市二手房成交数据，你的任务是利用训练数据建立回归预测模型，并对给定测试集进行预测。提交预测结果后，平台将自行计算 **RMSE**，并更新排行榜。
 
 <div class="challenge-layout" id="housing-challenge">
   <div class="challenge-main">
     <section class="challenge-panel" aria-labelledby="download-title">
-      <h2 id="download-title">下载实验数据</h2>
-      <p>使用 sample_id 对齐训练 X 与 y，sample_id 仅用作标识。</p>
+      <h2 id="download-title" class="challenge-section-title">下载实验数据 <span class="challenge-title-note">使用 sample_id 对齐训练 X 与 y，sample_id 仅用作标识。</span></h2>
       <div class="challenge-downloads">
         <a href="../assets/challenge/01_北京房价_训练集_X.csv" download>01 · 训练集 X <small>CSV · 输入特征</small></a>
         <a href="../assets/challenge/02_北京房价_训练集_y.csv" download>02 · 训练集 y <small>CSV · 真实总价</small></a>
@@ -21,8 +19,7 @@ hide:
       </div>
     </section>
     <section class="challenge-panel" aria-labelledby="submit-title">
-      <h2 id="submit-title">提交预测结果</h2>
-      <p class="challenge-limit-notice">每人最多可以提交三次。同一姓名或同一学号任一项达到三次，即达到提交上限。</p>
+      <h2 id="submit-title" class="challenge-section-title">提交预测结果 <span class="challenge-title-note challenge-limit-notice">每人最多可提交三次</span></h2>
       <details><summary>submission.csv 格式示例</summary>
         <pre><code>sample_id,prediction
 TEST_000001,356.72
@@ -40,19 +37,19 @@ TEST_000003,198.46</code></pre>
         <button class="md-button md-button--primary" id="challenge-submit" type="submit">开始评测</button>
         <p class="challenge-muted">姓名及最好成绩会显示在公开排行榜中，学号不公开。平台只接收预测 CSV。</p>
       </form>
-      <div id="challenge-result" role="status" aria-live="polite" hidden></div>
     </section>
   </div>
   <aside class="challenge-panel challenge-ranking" aria-labelledby="ranking-title">
     <p class="challenge-kicker">LEADERBOARD</p>
     <h2 id="ranking-title">挑战排行榜</h2>
-    <p class="challenge-muted">个人历史最好成绩 · 前 20 名</p>
+    <p class="challenge-muted">个人历史最好成绩 · 前 10 名</p>
     <button type="button" id="challenge-refresh" class="md-button">刷新排行榜</button>
     <p id="challenge-ranking-status" role="status">正在加载排行榜……</p>
     <div class="challenge-table-wrap">
       <table class="challenge-table"><thead><tr><th scope="col">排名</th><th scope="col">姓名</th><th scope="col">RMSE（万元）</th></tr></thead><tbody id="challenge-ranking-body"></tbody></table>
     </div>
-    <p class="challenge-muted">同分并列排名。评测后，即使不在前 20 名，也能查看自己的实际排名。</p>
+    <p class="challenge-muted">同分并列排名。评测后，即使不在前 10 名，也能查看自己的实际排名。</p>
+    <div id="challenge-result" role="status" aria-live="polite" hidden></div>
   </aside>
 </div>
 

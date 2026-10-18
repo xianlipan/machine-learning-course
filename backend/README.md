@@ -26,7 +26,7 @@ python -m venv .venv
 ## API 协议
 
 - `GET /api/health`：服务正常返回 HTTP 200 和 `{"status":"ok","evaluation_ready":true}`；首次部署缺少标签时 `evaluation_ready` 为 `false`，表示服务运行中但还未开放评测。
-- `GET /api/leaderboard`：返回 `{"leaderboard":[{"rank":1,"name":"张三","rmse":52.37}]}`，最多 20 人，不含学号。
+- `GET /api/leaderboard`：返回 `{"leaderboard":[{"entry_id":1,"rank":1,"name":"张三","rmse":52.37}]}`，最多 10 人，不含学号。`entry_id` 是数据库内部行标识，用于在当前页面高亮本次提交对应的条目，同名学生不会混淆。评测成功时也返回该标识。
 - `POST /api/evaluate`：`multipart/form-data`，恰好三个字段 `name`、`student_id`、`file`。file 必须是 CSV（最多 10 MiB），恰好两列 `sample_id,prediction`，允许列顺序变化，ID 必须与全部测试 ID 一致且不重复。只支持 UTF-8（可带 BOM）。
 
 成功返回 `success,name,student_id,rmse,best_rmse,rank,total_students,submission_count,remaining_submissions,submitted_at`。`rmse` 是本次成绩，`rank` 按历史最好成绩计算；同分使用竞赛排名（1、1、3）。`submission_count` 是该学号的成功提交次数，`remaining_submissions` 是综合姓名和学号后剩余的可提交次数。提交时间为带时区的 UTC ISO 字符串，浏览器按本地时区显示。失败返回 HTTP 400/413/415 和中文 `detail`；缺少标签时返回 HTTP 503，不评分、不记录提交。无效提交不计次数。任一姓名或学号累计成功提交达到三次后，后续提交返回 HTTP 429，不更新成绩、不增加次数。

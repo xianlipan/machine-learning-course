@@ -66,8 +66,8 @@ def test_api_best_score_ranking_and_privacy(service):
     result = submit(client, offset=5).json()
     assert result['rank'] == 23 and result['total_students'] == 23
     board = client.get('/api/leaderboard').json()['leaderboard']
-    assert len(board) == 20 and board[0]['rank'] == board[1]['rank'] == 1
-    assert all(set(row) == {'rank', 'name', 'rmse'} for row in board)
+    assert len(board) == 10 and board[0]['rank'] == board[1]['rank'] == 1
+    assert all(set(row) == {'entry_id', 'rank', 'name', 'rmse'} for row in board)
     assert [x['rmse'] for x in board] == sorted(x['rmse'] for x in board)
     with sqlite3.connect(db) as connection:
         assert connection.execute('SELECT submission_count FROM leaderboard WHERE student_id="001"').fetchone()[0] == 3
@@ -92,6 +92,19 @@ def test_upload_errors_and_cors(service):
     assert malformed.status_code == 400 and '格式错误' in malformed.json()['detail']
     response = client.options('/api/evaluate', headers={'Origin': 'https://xianlipan.github.io', 'Access-Control-Request-Method': 'POST'})
     assert response.headers['access-control-allow-origin'] == 'https://xianlipan.github.io'
+
+
+def test_leaderboard_entry_identifies_submitter_without_exposing_student_id(service):
+    client, _ = service
+    first = submit(client, student='private_001', name='同名', offset=2).json()
+    second = submit(client, student='private_002', name='同名', offset=1).json()
+    assert first['entry_id'] != second['entry_id']
+    board = client.get('/api/leaderboard').json()['leaderboard']
+    assert [row['entry_id'] for row in board] == [second['entry_id'], first['entry_id']]
+    assert all('student_id' not in row for row in board)
+    worse = submit(client, student='private_001', name='同名', offset=3).json()
+    assert worse['entry_id'] == first['entry_id']
+    assert worse['remaining_submissions'] == 0
 
 
 def test_first_deploy_then_upload_and_restart_preserves_scores(tmp_path):
