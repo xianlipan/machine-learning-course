@@ -14,7 +14,7 @@ hide:
 | 第 5 次课 | 正则化 | <a href="../files/slides/5正则化.pdf" download>5正则化.pdf</a> | <a href="../files/slides/Cha5_regularization.zip" download>Cha5_regularization.zip</a> | <a href="../files/slides/5作业.pdf" download>5作业.pdf</a> |
 | 第 6 次课 | 逻辑回归和贝叶斯分类 | <a href="../files/slides/6逻辑回归和贝叶斯.pdf" download>6逻辑回归和贝叶斯.pdf</a> | 待发布 | <a href="../files/slides/6作业.pdf" download>6作业.pdf</a> |
 | 第 7 次课 | 支持向量机 | 待发布 | 待发布 | 待发布 |
-| 第 8 次课 | 贝叶斯分类 | 待发布 | 待发布 | 待发布 |
+| 第 8 次课 | 优化求解算法 | 待发布 | 待发布 | 待发布 |
 | 第 9 次课 | 决策树 | 待发布 | 待发布 | 待发布 |
 | 第 10 次课 | 集成学习 | 待发布 | 待发布 | 待发布 |
 | 第 11 次课 | 模型评价与选择 | 待发布 | 待发布 | 待发布 |
