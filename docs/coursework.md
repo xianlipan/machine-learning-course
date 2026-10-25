@@ -11,8 +11,8 @@ hide:
 | 第 2 次课 | 聚类 | <a href="../files/slides/2聚类简介.pdf" download>2聚类简介.pdf</a> | <a href="../files/slides/Cha2_clustering.zip" download>Cha2_clustering.zip</a> | <a href="../files/slides/2作业.pdf" download>2作业.pdf</a> |
 | 第 3 次课 | 降维 | <a href="../files/slides/3降维.pdf" download>3降维.pdf</a> | <a href="../files/slides/Cha3_dimension_reduction.rar" download>Cha3_dimension_reduction.rar</a> | <a href="../files/slides/3作业.pdf" download>3作业.pdf</a> |
 | 第 4 次课 | 机器学习完整流程及线性回归 | <a href="../files/slides/4机器学习完整流程及线性回归.pdf" download>4机器学习完整流程及线性回归.pdf</a> | <a href="../files/slides/Cha4_linear_model.zip" download>Cha4_linear_model.zip</a> | <a href="../files/slides/4作业.pdf" download>4作业.pdf</a> |
-| 第 5 次课 | 逻辑回归 | 待发布 | 待发布 | 待发布 |
-| 第 6 次课 | 梯度下降 | 待发布 | 待发布 | 待发布 |
+| 第 5 次课 | 正则化 | <a href="../files/slides/5正则化.pdf" download>5正则化.pdf</a> | <a href="../files/slides/Cha5_regularization.zip" download>Cha5_regularization.zip</a> | <a href="../files/slides/5作业.pdf" download>5作业.pdf</a> |
+| 第 6 次课 | 逻辑回归和贝叶斯分类 | <a href="../files/slides/6逻辑回归和贝叶斯.pdf" download>6逻辑回归和贝叶斯.pdf</a> | 待发布 | <a href="../files/slides/6作业.pdf" download>6作业.pdf</a> |
 | 第 7 次课 | 支持向量机 | 待发布 | 待发布 | 待发布 |
 | 第 8 次课 | 贝叶斯分类 | 待发布 | 待发布 | 待发布 |
 | 第 9 次课 | 决策树 | 待发布 | 待发布 | 待发布 |
