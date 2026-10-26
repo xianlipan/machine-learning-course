@@ -104,7 +104,7 @@ def test_leaderboard_entry_identifies_submitter_without_exposing_student_id(serv
     assert all('student_id' not in row for row in board)
     worse = submit(client, student='private_001', name='同名', offset=3).json()
     assert worse['entry_id'] == first['entry_id']
-    assert worse['remaining_submissions'] == 0
+    assert 'remaining_submissions' not in worse
 
 
 def test_first_deploy_then_upload_and_restart_preserves_scores(tmp_path):
@@ -142,58 +142,49 @@ def test_invalid_labels_prevents_startup(tmp_path):
             pass
 
 
-def test_three_submission_limit_by_either_identity(service):
+def test_unlimited_submissions_by_either_identity(service):
     client, db = service
-    # Invalid CSV does not use an attempt.
-    invalid = client.post('/api/evaluate', data={'name': '甲', 'student_id': 'a'},
-        files={'file': ('bad.csv', b'sample_id,prediction\nTEST_1,NaN\n')})
-    assert invalid.status_code == 400
-    assert submit(client, student='a', name='甲').json()['remaining_submissions'] == 2
-    assert submit(client, student='b', name='甲').json()['remaining_submissions'] == 1
-    assert submit(client, student='c', name='甲').json()['remaining_submissions'] == 0
-    assert submit(client, student='d', name='甲').status_code == 429
-    # Changing the name still consumes the original student ID's quota.
-    assert submit(client, student='a', name='乙').status_code == 200
-    assert submit(client, student='a', name='丙').status_code == 200
-    rejected = submit(client, student='a', name='丁')
-    assert rejected.status_code == 429 and '提交上限' in rejected.json()['detail']
-    assert submit(client, student='d', name='甲').status_code == 429
+    for i in range(6):
+        response = submit(client, offset=10-i)
+        assert response.status_code == 200
+        assert response.json()['submission_count'] == i + 1
+    for i in range(6):
+        assert submit(client, student=f'other{i}').status_code == 200
+        assert submit(client, name=f'Name{i}').status_code == 200
     with sqlite3.connect(db) as connection:
-        assert connection.execute('SELECT submission_count FROM leaderboard WHERE student_id="a"').fetchone()[0] == 3
-        assert connection.execute('SELECT COUNT(*) FROM leaderboard WHERE student_id="d"').fetchone()[0] == 0
+        assert connection.execute('SELECT submission_count FROM leaderboard WHERE student_id="001"').fetchone()[0] == 12
 
 
-def test_existing_counts_migrate_without_reset(tmp_path):
-    from backend.database import initialize, record, SubmissionLimitReached
+def test_existing_counts_preserved_and_old_limits_ignored(tmp_path):
+    from backend.database import initialize, record
     path = tmp_path / 'old.db'
-    with sqlite3.connect(path) as db:
-        db.execute('CREATE TABLE leaderboard (student_id TEXT PRIMARY KEY, name TEXT NOT NULL, best_rmse REAL NOT NULL, submission_count INTEGER NOT NULL, updated_at TEXT NOT NULL)')
-        db.executemany('INSERT INTO leaderboard VALUES (?,?,?,?,?)',
-            [('001', '甲', 5., 2, 'old'), ('002', '甲', 8., 1, 'old'), ('003', '乙', 9., 4, 'old')])
-    initialize(path)
-    for student, name in [('004', '甲'), ('003', '新姓名')]:
-        with pytest.raises(SubmissionLimitReached):
-            record(path, student, name, 1.)
-    record(path, '005', '新同学', 7.)
     initialize(path)
     with sqlite3.connect(path) as db:
-        assert db.execute('SELECT best_rmse, submission_count FROM leaderboard WHERE student_id="001"').fetchone() == (5., 2)
-        assert db.execute("SELECT submission_count FROM submission_limits WHERE kind='name' AND identity='甲'").fetchone()[0] == 3
+        db.execute('INSERT INTO leaderboard VALUES (?,?,?,?,?)', ('001', 'Name', 5., 4, 'old'))
+        db.execute('CREATE TABLE submission_limits (kind TEXT, identity TEXT, submission_count INTEGER, PRIMARY KEY (kind, identity))')
+        db.executemany('INSERT INTO submission_limits VALUES (?,?,?)',
+            [('student_id', '001', 4), ('name', 'Name', 4)])
+    initialize(path)
+    result = record(path, '001', 'Name', 8.)
+    assert result['submission_count'] == 5
+    assert result['best_rmse'] == 5.
+    assert record(path, '002', 'Name', 7.)['submission_count'] == 1
+    initialize(path)
+    with sqlite3.connect(path) as db:
+        assert db.execute('SELECT best_rmse, submission_count FROM leaderboard WHERE student_id="001"').fetchone() == (5., 5)
 
 
 @pytest.mark.parametrize('same_name', [True, False])
-def test_concurrent_limit_cannot_be_exceeded(tmp_path, same_name):
+def test_concurrent_submissions_all_recorded(tmp_path, same_name):
     from concurrent.futures import ThreadPoolExecutor
-    from backend.database import initialize, record, SubmissionLimitReached
+    from backend.database import initialize, record
     path = tmp_path / 'concurrent.db'
     initialize(path)
     def attempt(i):
-        try:
-            record(path, str(i) if same_name else '001', '同名' if same_name else f'姓名{i}', 10.)
-            return True
-        except SubmissionLimitReached:
-            return False
+        return record(path, str(i) if same_name else '001', 'Name' if same_name else f'Name{i}', float(i))
     with ThreadPoolExecutor(max_workers=6) as pool:
-        assert sum(pool.map(attempt, range(6))) == 3
+        assert len(list(pool.map(attempt, range(6)))) == 6
     with sqlite3.connect(path) as db:
-        assert db.execute('SELECT SUM(submission_count) FROM leaderboard').fetchone()[0] == 3
+        assert db.execute('SELECT SUM(submission_count) FROM leaderboard').fetchone()[0] == 6
+        if not same_name:
+            assert db.execute('SELECT best_rmse FROM leaderboard').fetchone()[0] == 0.

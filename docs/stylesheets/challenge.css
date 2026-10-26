@@ -38,7 +38,6 @@
 .challenge-current { background: rgb(24 166 184 / 12%); }
 .challenge-current td:first-child { box-shadow: inset .18rem 0 var(--course-cyan); padding-left: .45rem; }
 .challenge-current-badge { display: block; width: fit-content; font-size: .6rem; font-weight: 700; color: var(--md-accent-fg-color); }
-.challenge-remaining { font-weight: 700; }
 @media (max-width: 760px) {
   .challenge-layout { grid-template-columns: minmax(0, 1fr); }
   .challenge-panel, .challenge-home { padding: 1rem; }
@@ -47,6 +46,4 @@
   .challenge-downloads, .challenge-fields { grid-template-columns: minmax(0, 1fr); }
 }
 
-.md-typeset .challenge-limit-notice { color: #b42318; font-weight: 700; }
-[data-md-color-scheme="slate"] .challenge-limit-notice { color: #ff8a80; }
 [data-md-color-scheme="slate"] .challenge-error { color: #ff8a80; }

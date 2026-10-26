@@ -20,7 +20,7 @@ hide:
       </div>
     </section>
     <section class="challenge-panel" aria-labelledby="submit-title">
-      <h2 id="submit-title" class="challenge-section-title">提交预测结果 <span class="challenge-title-note challenge-limit-notice">每人最多可提交三次</span></h2>
+      <h2 id="submit-title" class="challenge-section-title">提交预测结果</h2>
       <details><summary>submission.csv 格式示例</summary>
         <pre><code>sample_id,prediction
 TEST_000001,356.72

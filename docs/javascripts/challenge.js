@@ -96,12 +96,6 @@
           encouragement.textContent = '前十还没挤进去？别急，你的模型正在热身，下一位黑马说不定就是你！';
           result.append(encouragement);
         }
-        if (Number.isInteger(data.remaining_submissions)) {
-          const remaining = document.createElement('p');
-          remaining.className = 'challenge-remaining';
-          remaining.textContent = `剩余提交次数：${data.remaining_submissions} 次`;
-          result.append(remaining);
-        }
         const time = document.createElement('p');
         time.textContent = `提交时间：${new Date(data.submitted_at).toLocaleString('zh-CN')}`;
         result.append(time);

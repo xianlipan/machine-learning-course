@@ -11,7 +11,7 @@ from starlette.concurrency import run_in_threadpool
 from starlette.datastructures import UploadFile
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
-from .database import initialize, leaderboard, record, check_limit, SubmissionLimitReached
+from .database import initialize, leaderboard, record
 from .evaluator import MAX_BYTES, evaluate, load_labels
 
 ROOT = Path(__file__).resolve().parent
@@ -90,15 +90,12 @@ def create_app(labels_path=None, db_path=None):
                     raise ValueError('学号须为 1–64 位字母、数字、下划线或短横线。')
                 if not isinstance(file, UploadFile) or not (file.filename or '').lower().endswith('.csv'):
                     raise ValueError('只能上传 CSV 文件。')
-                await run_in_threadpool(check_limit, db_path, student_id.strip(), name.strip())
                 content = await file.read(MAX_BYTES + 1)
                 if len(content) > MAX_BYTES:
                     raise HTTPException(413, '文件不能超过 10 MB。')
                 rmse = await run_in_threadpool(evaluate, content, app.state.labels)
                 result = await run_in_threadpool(record, db_path, student_id.strip(), name.strip(), rmse)
                 return {'success': True, 'name': name.strip(), 'student_id': student_id.strip(), 'rmse': rmse, **result}
-        except SubmissionLimitReached as error:
-            raise HTTPException(429, str(error)) from None
         except ValueError as error:
             raise HTTPException(400, str(error)) from None
 
