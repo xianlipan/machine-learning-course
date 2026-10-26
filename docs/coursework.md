@@ -18,8 +18,8 @@ hide:
 | 第 9 次课 | 决策树和集成学习1 | <a href="../files/slides/9决策树和集成学习1.pdf" download>9决策树和集成学习1.pdf</a> | 待发布 | 待发布 |
 | 第 10 次课 | 决策树和集成学习2 | <a href="../files/slides/10决策树和集成学习2.pdf" download>10决策树和集成学习2.pdf</a> | 待发布 | 待发布 |
 | 第 11 次课 | 模型评价与选择 | 待发布 | 待发布 | 待发布 |
-| 第 12 次课 | DNN | 待发布 | 待发布 | 待发布 |
-| 第 13 次课 | CNN、RNN 与 Transformer | 待发布 | 待发布 | 待发布 |
-| 第 14 次课 | VAE 与 GAN | 待发布 | 待发布 | 待发布 |
+| 第 12 次课 | 神经网络1 | <a href="../files/slides/12神经网络1.pdf" download>12神经网络1.pdf</a> | 待发布 | 待发布 |
+| 第 13 次课 | 神经网络2 | <a href="../files/slides/13神经网络2.pdf" download>13神经网络2.pdf</a> | 待发布 | 待发布 |
+| 第 14 次课 | AIGC | <a href="../files/slides/14AIGC.pdf" download>14AIGC.pdf</a> | 待发布 | 待发布 |
 | 第 15 次课 | Diffusion | 待发布 | 待发布 | 待发布 |
 | 第 16 次课 | 项目展示 | 待发布 | 待发布 | 待发布 |
