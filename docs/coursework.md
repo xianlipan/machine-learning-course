@@ -13,7 +13,7 @@ hide:
 | 第 4 次课 | 机器学习完整流程及线性回归 | <a href="../files/slides/4机器学习完整流程及线性回归.pdf" download>4机器学习完整流程及线性回归.pdf</a> | <a href="../files/slides/Cha4_linear_model.zip" download>Cha4_linear_model.zip</a> | <a href="../files/slides/4作业.pdf" download>4作业.pdf</a> |
 | 第 5 次课 | 正则化 | <a href="../files/slides/5正则化.pdf" download>5正则化.pdf</a> | <a href="../files/slides/Cha5_regularization.zip" download>Cha5_regularization.zip</a> | <a href="../files/slides/5作业.pdf" download>5作业.pdf</a> |
 | 第 6 次课 | 逻辑回归和贝叶斯分类 | <a href="../files/slides/6逻辑回归和贝叶斯.pdf" download>6逻辑回归和贝叶斯.pdf</a> | <a href="../files/slides/Cha6_logistic_regression_and_bayes.zip" download>Cha6_logistic_regression_and_bayes.zip</a> | <a href="../files/slides/6作业.pdf" download>6作业.pdf</a> |
-| 第 7 次课 | 支持向量机 | <a href="../files/slides/7支持向量机.pdf" download>7支持向量机.pdf</a> | 待发布 | 待发布 |
+| 第 7 次课 | 支持向量机 | <a href="../files/slides/7支持向量机.pdf" download>7支持向量机.pdf</a> | <a href="../files/slides/Cha7_SVM.zip" download>Cha7_SVM.zip</a> | <a href="../files/slides/7作业.pdf" download>7作业.pdf</a> |
 | 第 8 次课 | 优化求解算法 | 待发布 | 待发布 | 待发布 |
 | 第 9 次课 | 决策树和集成学习1 | <a href="../files/slides/9决策树和集成学习1.pdf" download>9决策树和集成学习1.pdf</a> | 待发布 | 待发布 |
 | 第 10 次课 | 决策树和集成学习2 | <a href="../files/slides/10决策树和集成学习2.pdf" download>10决策树和集成学习2.pdf</a> | 待发布 | 待发布 |
