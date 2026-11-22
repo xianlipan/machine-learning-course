@@ -15,7 +15,7 @@ hide:
 | 第 6 次课 | 逻辑回归和贝叶斯分类 | <a href="../files/slides/6逻辑回归和贝叶斯.pdf" download>6逻辑回归和贝叶斯.pdf</a> | <a href="../files/slides/Cha6_logistic_regression_and_bayes.zip" download>Cha6_logistic_regression_and_bayes.zip</a> | <a href="../files/slides/6作业.pdf" download>6作业.pdf</a> |
 | 第 7 次课 | 支持向量机 | <a href="../files/slides/7支持向量机.pdf" download>7支持向量机.pdf</a> | <a href="../files/slides/Cha7_SVM.zip" download>Cha7_SVM.zip</a> | <a href="../files/slides/7作业.pdf" download>7作业.pdf</a> |
 | 第 8 次课 | 优化求解算法 | <a href="../files/slides/8求解算法.pdf" download>8求解算法.pdf</a> | <a href="../files/slides/Cha8_solving_methods.zip" download>Cha8_solving_methods.zip</a> | <a href="../files/slides/8作业.pdf" download>8作业.pdf</a> |
-| 第 9 次课 | 决策树和集成学习1 | <a href="../files/slides/9决策树和集成学习1.pdf" download>9决策树和集成学习1.pdf</a> | 待发布 | 待发布 |
+| 第 9 次课 | 决策树和集成学习1 | <a href="../files/slides/9决策树和集成学习1.pdf" download>9决策树和集成学习1.pdf</a> | <a href="../files/slides/Cha9_DT_ensemble_1.ipynb" download>Cha9_DT_ensemble_1.ipynb</a> | 待发布 |
 | 第 10 次课 | 决策树和集成学习2 | <a href="../files/slides/10决策树和集成学习2.pdf" download>10决策树和集成学习2.pdf</a> | 待发布 | 待发布 |
 | 第 11 次课 | 模型评价与选择 | 待发布 | 待发布 | 待发布 |
 | 第 12 次课 | 神经网络1 | <a href="../files/slides/12神经网络1.pdf" download>12神经网络1.pdf</a> | 待发布 | 待发布 |
