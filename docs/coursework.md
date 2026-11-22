@@ -5,6 +5,8 @@ hide:
 
 点击表格中的链接即可获取相应课程资料，未发布的内容会在更新后补充下载链接。
 
+第 9 次课的课堂代码为 Jupyter Notebook（`.ipynb`）文件，下载后可使用 Jupyter Notebook 或 JupyterLab 打开运行。
+
 | 课次 | 课程主题 | 课件 | 课堂代码 | <span class="assignment-heading">作业<br><small>（作业请在师星学堂提交）</small></span> |
 | --- | --- | --- | --- | --- |
 | 第 1 次课 | 机器学习简介 | <a href="../files/slides/1机器学习简介.pdf" download>1机器学习简介.pdf</a> | <a href="../files/slides/Cha1_demo.zip" download>Cha1_demo.zip</a> | <a href="../files/slides/1作业.pdf" download>1作业.pdf</a> |

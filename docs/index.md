@@ -2,6 +2,9 @@
 hide:
   - navigation
 ---
+
+最新课程资料：第 9 次课「决策树和集成学习1」的 [Jupyter Notebook 课堂代码](files/slides/Cha9_DT_ensemble_1.ipynb){ download } 已提供下载。查看[全部课程资料](coursework.md)。
+
 <section class="home-hero" aria-labelledby="welcome-title">
   <div class="home-hero__copy">
     <p class="home-eyebrow">MACHINE LEARNING · 研究生课程</p>
